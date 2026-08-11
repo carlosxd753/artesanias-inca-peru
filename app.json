@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Pedidos Firebase Maqueta",
+    "slug": "demo-pedidos-firebase-maqueta-alumnos",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "pedidosfirebasemaqueta",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.idat.pedidosfirebasemaqueta"
+    },
+    "plugins": ["expo-router", "expo-image-picker"]
+  }
+}
