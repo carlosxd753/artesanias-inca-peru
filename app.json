@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Pedidos Firebase Maqueta",
-    "slug": "demo-pedidos-firebase-maqueta-alumnos",
+    "name": "Artesanias Inca Peru",
+    "slug": "artesanias-inca-peru",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "pedidosfirebasemaqueta",
+    "scheme": "artesaniasincaperu",
     "userInterfaceStyle": "light",
     "android": {
-      "package": "com.idat.pedidosfirebasemaqueta"
+      "package": "com.idat.artesaniasincaperu"
     },
     "plugins": ["expo-router", "expo-image-picker"]
   }
