@@ -36,8 +36,6 @@ export function RegisterScreen({ onBackToLogin }: Props) {
       setLoading(true);
       console.log("[UI REGISTER] Registro para proyecto pedidos.");
 
-      // TODO 13:
-      // Llamar al servicio registerUser(email, password, name).
       await registerUser(email, password, name);
     } catch (error) {
       console.log("[UI REGISTER] Error:", error);
@@ -65,18 +63,49 @@ export function RegisterScreen({ onBackToLogin }: Props) {
       </View>
 
       <View className="rounded-[28px] border border-slate-200 bg-white p-5">
-        <TextInput value={name} onChangeText={setName} placeholder="Nombre" className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900" />
-        <TextInput value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" placeholder="vendedor@correo.com" className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900" />
-        <TextInput value={password} onChangeText={setPassword} secureTextEntry placeholder="Contraseña" className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900" />
-        <TextInput value={confirmPassword} onChangeText={setConfirmPassword} secureTextEntry placeholder="Confirmar contraseña" className="mb-4 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900" />
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Nombre"
+          className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900"
+        />
+        <TextInput
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholder="vendedor@correo.com"
+          className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900"
+        />
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          placeholder="Contraseña"
+          className="mb-3 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900"
+        />
+        <TextInput
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+          placeholder="Confirmar contraseña"
+          className="mb-4 rounded-2xl border border-slate-200 px-4 py-3 text-slate-900"
+        />
 
-        <Pressable onPress={handleRegister} disabled={loading} className="mb-3 rounded-2xl bg-indigo-600 py-4">
+        <Pressable
+          onPress={handleRegister}
+          disabled={loading}
+          className="mb-3 rounded-2xl bg-indigo-600 py-4"
+        >
           <Text className="text-center text-base font-black text-white">
             {loading ? "Creando..." : "Registrarme"}
           </Text>
         </Pressable>
 
-        <Pressable onPress={onBackToLogin} className="rounded-2xl border border-indigo-200 py-4">
+        <Pressable
+          onPress={onBackToLogin}
+          className="rounded-2xl border border-indigo-200 py-4"
+        >
           <Text className="text-center text-base font-black text-indigo-700">
             Ya tengo cuenta
           </Text>

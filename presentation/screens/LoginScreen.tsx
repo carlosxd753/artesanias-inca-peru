@@ -32,8 +32,6 @@ export function LoginScreen() {
       setLoading(true);
       console.log("[UI LOGIN] Login para proyecto pedidos.");
 
-      // TODO 12:
-      // Llamar al servicio loginUser(email, password).
       await loginUser(email, password);
     } catch (error) {
       console.log("[UI LOGIN] Error:", error);

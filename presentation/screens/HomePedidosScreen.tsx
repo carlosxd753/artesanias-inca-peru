@@ -48,8 +48,6 @@ export function HomePedidosScreen() {
       setLoadingPedidos(true);
       console.log("[UI PEDIDOS] Cargando pedidos del UID:", user.uid);
 
-      // TODO 14:
-      // Llamar getPedidosByUser(user.uid).
       const data = await getPedidosByUser(user.uid);
       setPedidos(data);
     } catch (error) {
@@ -102,8 +100,6 @@ export function HomePedidosScreen() {
 
       console.log("[UI PEDIDOS] Creando pedido con userId:", user.uid);
 
-      // TODO 15:
-      // Crear pedido en Firestore.
       await createPedido(nuevoPedido);
 
       setCliente("");
