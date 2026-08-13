@@ -133,9 +133,7 @@ export function InspiracionScreen() {
                   backgroundColor: "#334155",
                 }}
                 resizeMode="cover"
-                onLoad={() => {
-                  console.log("[IMAGE] Cargada:", imagen.titulo);
-                }}
+                onLoad={() => {}}
                 onError={(event) => {
                   console.log(
                     "[IMAGE] Error:",

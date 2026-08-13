@@ -20,7 +20,6 @@ export function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Animaciones
   const fadeAnim = useState(new Animated.Value(0))[0];
   const slideAnim = useState(new Animated.Value(30))[0];
   const scaleAnim = useState(new Animated.Value(0.95))[0];

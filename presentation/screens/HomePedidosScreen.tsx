@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import {
   ActivityIndicator,
   Alert,
@@ -104,8 +105,13 @@ export function HomePedidosScreen() {
 
   useEffect(() => {
     loadPedidos();
-    loadProductos();
   }, [user?.uid]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadProductos();
+    }, []),
+  );
 
   const handleSelectProduct = (product: Product) => {
     setProductoSeleccionado(product);
@@ -176,10 +182,8 @@ export function HomePedidosScreen() {
 
       await createPedido(nuevoPedido);
 
-      // Descontar stock del producto en SQLite
       await updateProductStock(productoSeleccionado.id, cantidadNumber);
 
-      // Recargar productos para mostrar el stock actualizado
       await loadProductos();
 
       setCliente("");

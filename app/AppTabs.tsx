@@ -27,7 +27,6 @@ export default function AppNavigator() {
 
         headerTintColor: "#6366f1",
 
-        // Fondo del Drawer
         drawerStyle: {
           backgroundColor: "#0f172a",
           width: 290,
