@@ -1,6 +1,13 @@
 import { onAuthStateChanged, User } from "firebase/auth";
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { auth } from "../../infrastructure/firebase/firebaseConfig";
+import { initDatabase } from "../../infrastructure/database/database";
 
 interface AuthContextValue {
   user: User | null;
@@ -18,6 +25,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     console.log("[AUTH SESSION] Escuchando sesión en proyecto de pedidos...");
+
+    initDatabase().catch((error) => {
+      console.log("[SQLITE] Error inicializando base de datos:", error);
+    });
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {

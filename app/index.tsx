@@ -1,6 +1,6 @@
-import { HomePedidosScreen } from "../presentation/screens/HomePedidosScreen";
 import { LoginScreen } from "../presentation/screens/LoginScreen";
 import { useAuth } from "../presentation/context/AuthContext";
+import AppTabs from "./AppTabs";
 
 export default function Index() {
   const { user, loadingSession } = useAuth();
@@ -9,5 +9,5 @@ export default function Index() {
     return null;
   }
 
-  return user ? <HomePedidosScreen /> : <LoginScreen />;
+  return user ? <AppTabs /> : <LoginScreen />;
 }

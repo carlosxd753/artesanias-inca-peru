@@ -3,14 +3,20 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
 } from "firebase/auth";
-import { auth, isFirebaseConfigured } from "infrastructure/firebase/firebaseConfig";
 
+import {
+  auth,
+  isFirebaseConfigured,
+} from "infrastructure/firebase/firebaseConfig";
 
 export const registerUser = async (
   email: string,
   password: string,
-  displayName: string
+  displayName: string,
 ) => {
   console.log("[AUTH REGISTER] Registrando usuario:", email);
 
@@ -18,16 +24,18 @@ export const registerUser = async (
     throw new Error("Firebase todavía no está configurado.");
   }
 
-  // TODO 6:
-  // Crear usuario con createUserWithEmailAndPassword.
-  const credential = await createUserWithEmailAndPassword(auth, email, password);
+  const credential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+
   console.log("[AUTH REGISTER] Usuario creado. UID:", credential.user.uid);
 
-  // TODO 7:
-  // Guardar nombre visible con updateProfile.
   await updateProfile(credential.user, { displayName });
 
- console.log("[AUTH REGISTER] Nombre actualizado:", displayName);
+  console.log("[AUTH REGISTER] Nombre actualizado:", displayName);
+
   return credential;
 };
 
@@ -38,11 +46,10 @@ export const loginUser = async (email: string, password: string) => {
     throw new Error("Firebase todavía no está configurado.");
   }
 
-  // TODO 8:
-  // Iniciar sesión con signInWithEmailAndPassword.
   const credential = await signInWithEmailAndPassword(auth, email, password);
 
   console.log("[AUTH LOGIN] Login correcto. UID:", credential.user.uid);
+
   return credential;
 };
 
@@ -53,8 +60,32 @@ export const logoutUser = async () => {
     throw new Error("Firebase todavía no está configurado.");
   }
 
-  // TODO 9:
-  // Cerrar sesión con signOut.
   await signOut(auth);
+
   console.log("[AUTH LOGOUT] Sesión cerrada.");
+};
+
+export const changePassword = async (
+  currentPassword: string,
+  newPassword: string,
+) => {
+  console.log("[AUTH PASSWORD] Cambiando contraseña...");
+
+  if (!isFirebaseConfigured) {
+    throw new Error("Firebase todavía no está configurado.");
+  }
+
+  const user = auth.currentUser;
+
+  if (!user || !user.email) {
+    throw new Error("No hay un usuario autenticado.");
+  }
+
+  const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+  await reauthenticateWithCredential(user, credential);
+
+  await updatePassword(user, newPassword);
+
+  console.log("[AUTH PASSWORD] Contraseña actualizada correctamente.");
 };

@@ -9,6 +9,10 @@
     "android": {
       "package": "com.idat.artesaniasincaperu"
     },
-    "plugins": ["expo-router", "expo-image-picker"]
+    "plugins": [
+      "expo-router",
+      "expo-image-picker",
+      "expo-sqlite"
+    ]
   }
 }
